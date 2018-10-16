@@ -35,6 +35,11 @@ class ComposerStaticInit9dbff26efc82554b2903d047399e6023
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'm' => 
+        array (
+            'mdm\\widgets\\' => 12,
+            'mdm\\behaviors\\ar\\' => 17,
+        ),
         'k' => 
         array (
             'kartik\\select2\\' => 15,
@@ -131,6 +136,14 @@ class ComposerStaticInit9dbff26efc82554b2903d047399e6023
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'mdm\\widgets\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mdmsoft/yii2-widgets',
+        ),
+        'mdm\\behaviors\\ar\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mdmsoft/yii2-ar-behaviors',
         ),
         'kartik\\select2\\' => 
         array (

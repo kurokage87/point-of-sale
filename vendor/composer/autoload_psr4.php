@@ -15,6 +15,8 @@ return array(
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'rmrevin\\yii\\fontawesome\\' => array($vendorDir . '/rmrevin/yii2-fontawesome'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
+    'mdm\\widgets\\' => array($vendorDir . '/mdmsoft/yii2-widgets'),
+    'mdm\\behaviors\\ar\\' => array($vendorDir . '/mdmsoft/yii2-ar-behaviors'),
     'kartik\\select2\\' => array($vendorDir . '/kartik-v/yii2-widget-select2/src'),
     'kartik\\grid\\' => array($vendorDir . '/kartik-v/yii2-grid/src'),
     'kartik\\dialog\\' => array($vendorDir . '/kartik-v/yii2-dialog/src'),

@@ -120,4 +120,23 @@ return array (
       '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2/src',
     ),
   ),
+  'mdmsoft/yii2-widgets' => 
+  array (
+    'name' => 'mdmsoft/yii2-widgets',
+    'version' => '1.2.0.0',
+    'alias' => 
+    array (
+      '@mdm/widgets' => $vendorDir . '/mdmsoft/yii2-widgets',
+    ),
+  ),
+  'mdmsoft/yii2-ar-behaviors' => 
+  array (
+    'name' => 'mdmsoft/yii2-ar-behaviors',
+    'version' => '1.3.0.0',
+    'alias' => 
+    array (
+      '@mdm/behaviors/ar' => $vendorDir . '/mdmsoft/yii2-ar-behaviors',
+    ),
+    'bootstrap' => 'mdm\\behaviors\\ar\\Bootstrap',
+  ),
 );
