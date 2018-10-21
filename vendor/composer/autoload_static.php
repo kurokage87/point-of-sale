@@ -47,6 +47,10 @@ class ComposerStaticInit9dbff26efc82554b2903d047399e6023
             'kartik\\dialog\\' => 14,
             'kartik\\base\\' => 12,
         ),
+        'h' => 
+        array (
+            'hscstudio\\cart\\' => 15,
+        ),
         'd' => 
         array (
             'dosamigos\\datepicker\\' => 21,
@@ -160,6 +164,10 @@ class ComposerStaticInit9dbff26efc82554b2903d047399e6023
         'kartik\\base\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base/src',
+        ),
+        'hscstudio\\cart\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hscstudio/yii2-cart',
         ),
         'dosamigos\\datepicker\\' => 
         array (

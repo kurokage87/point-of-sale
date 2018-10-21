@@ -38,5 +38,29 @@ $this->params['breadcrumbs'][] = $this->title;
             'keterangan:ntext',
         ],
     ]) ?>
+    
+    <?php
+    $listPembelian = \app\models\DetailJual::find()->where(['penjualan_id' => $model->id])->all();
+    ?>
+    
+    <?= \kartik\grid\GridView::widget([
+        'dataProvider' => new yii\data\ActiveDataProvider([
+            'query' => $model->getDetailJuals(),
+            'pagination' => false
+        ]),
+        'showPageSummary' => true,
+        'columns' => [
+            'barang.nama_barang',
+            'qty',
+            [
+                'label' => 'Total',
+                'pageSummary' => true,
+                'value' => function($data){
+                return $data->qty * $data->barang->harga_jual;
+                }
+            ]
+        ]
+    ])?>
+    
 
 </div>

@@ -10,8 +10,8 @@ use Yii;
  * @property int $id
  * @property string $nama_barang
  * @property string $barang_satuan
- * @property string $harga_modal
- * @property string $harga_jual
+ * @property integer $harga_modal
+ * @property integer $harga_jual
  * @property string $stock
  * @property string $min_stock
  * @property string $tgl_input
@@ -24,8 +24,9 @@ use Yii;
  * @property DetailBeliSupplier[] $detailBeliSuppliers
  * @property DetailJual[] $detailJuals
  */
-class Barang extends \yii\db\ActiveRecord
+class Barang extends \yii\db\ActiveRecord implements \hscstudio\cart\ItemInterface
 {
+    use \hscstudio\cart\ItemTrait;
     /**
      * {@inheritdoc}
      */
@@ -41,10 +42,9 @@ class Barang extends \yii\db\ActiveRecord
     {
         return [
             [['tgl_input', 'tgl_last_update'], 'safe'],
-            [['kategori_id', 'user_id'], 'integer'],
+            [['kategori_id', 'user_id','harga_modal', 'harga_jual'], 'integer'],
             [['nama_barang', 'stock', 'min_stock'], 'string', 'max' => 255],
             [['barang_satuan'], 'string', 'max' => 5],
-            [['harga_modal', 'harga_jual'], 'string', 'max' => 100],
             [['kategori_id'], 'exist', 'skipOnError' => true, 'targetClass' => Kategori::className(), 'targetAttribute' => ['kategori_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -101,4 +101,13 @@ class Barang extends \yii\db\ActiveRecord
     {
         return $this->hasMany(DetailJual::className(), ['barang_id' => 'id']);
     }
+
+    public function getId(){
+        return $this->id;
+    }
+
+    public function getPrice(){
+        return $this->harga_jual;
+    }
+
 }

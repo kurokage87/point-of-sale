@@ -22,13 +22,26 @@ $config = [
         ]
     ],
     'components' => [
-         'view' => [
-         'theme' => [
-             'pathMap' => [
-                '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
-             ],
-         ],
-    ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+                ],
+            ],
+        ],
+        'cart' => [
+            'class' => 'hscstudio\cart\Cart',
+            'storage' => [
+                'class' => 'hscstudio\cart\MultipleStorage',
+                'storages' => [
+                    ['class' => 'hscstudio\cart\SessionStorage'],
+                    [
+                        'class' => 'hscstudio\cart\DatabaseStorage',
+                        'table' => 'cart',
+                    ],
+                ],
+            ]
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '7NcQ57JpgcLGmuOIxsX_R8n7diOSQYsC',

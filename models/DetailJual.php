@@ -18,6 +18,28 @@ use Yii;
  */
 class DetailJual extends \yii\db\ActiveRecord
 {
+    const UPDATE_TYPE_CREATE = 'create';
+    const UPDATE_TYPE_UPDATE = 'update';
+    const UPDATE_TYPE_DELETE = 'delete';
+    
+    const SCENARIO_BATCH_UPDATE = 'batchUpdate';
+
+    private $_updateType;
+    
+    public function getUpdateType(){
+        if (empty($this->_updateType)){
+            if ($this->isNewRecord){
+                $this->_updateType = self::UPDATE_TYPE_CREATE;
+            }else{
+                $this->_updateType = self::UPDATE_TYPE_UPDATE;
+            }
+        }
+        return $this->_updateType;
+    }
+    
+    public function setUpdateType($value){
+        $this->_updateType = $value;
+    }
     /**
      * {@inheritdoc}
      */
@@ -32,6 +54,13 @@ class DetailJual extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            ['updateType', 'required', 'on' => self::SCENARIO_BATCH_UPDATE],
+            ['updateType',
+                'in',
+                'range' => [self::UPDATE_TYPE_CREATE, self::UPDATE_TYPE_UPDATE, self::UPDATE_TYPE_DELETE],
+                'on' => self::SCENARIO_BATCH_UPDATE
+            ],
+            ['penjualan_id', 'required', 'except' => self::SCENARIO_BATCH_UPDATE],
             [['penjualan_id', 'barang_id', 'qty'], 'integer'],
             [['total'], 'number'],
             [['barang_id'], 'exist', 'skipOnError' => true, 'targetClass' => Barang::className(), 'targetAttribute' => ['barang_id' => 'id']],
