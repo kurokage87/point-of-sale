@@ -21,6 +21,7 @@ return array(
     'kartik\\grid\\' => array($vendorDir . '/kartik-v/yii2-grid/src'),
     'kartik\\dialog\\' => array($vendorDir . '/kartik-v/yii2-dialog/src'),
     'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base/src'),
+    'hscstudio\\cart\\' => array($vendorDir . '/hscstudio/yii2-cart'),
     'dosamigos\\datepicker\\' => array($vendorDir . '/2amigos/yii2-date-picker-widget/src'),
     'dmstr\\' => array($vendorDir . '/dmstr/yii2-adminlte-asset'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),

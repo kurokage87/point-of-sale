@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Penjualan;
-use app\models\PenjualanSearch;
+use app\models\searchModel\PenjualanSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -33,6 +33,7 @@ class PenjualanController extends Controller
      * Lists all Penjualan models.
      * @return mixed
      */
+    
     public function actionIndex()
     {
         $searchModel = new PenjualanSearch();
@@ -62,8 +63,6 @@ class PenjualanController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    
-    
     public function actionCreate()
     {
         $model = new Penjualan();

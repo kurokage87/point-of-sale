@@ -139,4 +139,13 @@ return array (
     ),
     'bootstrap' => 'mdm\\behaviors\\ar\\Bootstrap',
   ),
+  'hscstudio/yii2-cart' => 
+  array (
+    'name' => 'hscstudio/yii2-cart',
+    'version' => '2.2.0.0',
+    'alias' => 
+    array (
+      '@hscstudio/cart' => $vendorDir . '/hscstudio/yii2-cart',
+    ),
+  ),
 );

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb94294ea8fc4feebafa1c52b14daacd",
+    "content-hash": "33e675cde22252a2b0e5f31b2ff24a43",
     "packages": [
         {
             "name": "2amigos/yii2-date-picker-widget",
@@ -611,6 +611,47 @@
                 "icon"
             ],
             "time": "2016-10-24T15:52:54+00:00"
+        },
+        {
+            "name": "hscstudio/yii2-cart",
+            "version": "v2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hscstudio/yii2-cart.git",
+                "reference": "24c9ae8bddf82e63c4704e608567377f547982bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hscstudio/yii2-cart/zipball/24c9ae8bddf82e63c4704e608567377f547982bd",
+                "reference": "24c9ae8bddf82e63c4704e608567377f547982bd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "hscstudio\\cart\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hafid Mukhlasin",
+                    "email": "hafidmukhlasin@gmail.com"
+                }
+            ],
+            "description": "Yii2 extension that adds shopping cart functions",
+            "keywords": [
+                "shopping cart",
+                "yii"
+            ],
+            "time": "2016-01-17T23:24:26+00:00"
         },
         {
             "name": "kartik-v/yii2-dialog",

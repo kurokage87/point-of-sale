@@ -23,7 +23,8 @@
         "kartik-v/yii2-grid": "dev-master",
         "kartik-v/yii2-widget-select2": "@dev",
         "mdmsoft/yii2-widgets": "~1.0",
-        "mdmsoft/yii2-ar-behaviors": "~1.0"
+        "mdmsoft/yii2-ar-behaviors": "~1.0",
+        "hscstudio/yii2-cart": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
