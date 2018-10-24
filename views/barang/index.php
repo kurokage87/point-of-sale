@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\searchModel\BarangSearch */
@@ -22,23 +22,53 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
+        'panel' => ['type' => 'danger', 'heading' => 'List Barang'],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'kartik\grid\SerialColumn'],
 
             'id',
             'nama_barang',
             'barang_satuan',
             'harga_modal',
             'harga_jual',
-            //'stock',
+            'stock',
+            [
+                'label' => 'Total Terjual',
+                'value' => function($data){
+                   $jual = app\models\DetailJual::find()->where(['barang_id' => $data->id])->all();
+                   $sum = 0;
+                   foreach ($jual as $key => $j) {
+                       $sum +=$j->qty;
+                       
+                   }
+                   return $sum;
+                }
+            ],
+                    [
+                'label' => 'Sisa Barang',
+                'value' => function($data){
+                   $jual = app\models\DetailJual::find()->where(['barang_id' => $data->id])->all();
+                   $sum = 0;
+                   foreach ($jual as $key => $j) {
+                       $sum +=$j->qty;
+                       
+                   }
+                   $total = $data->stock - $sum;
+                   if ($total < 5){
+                       return 'Silahkan Update Stock Terbaru';
+                   }else{
+                       return $total;
+                   }
+                }
+            ],
             //'min_stock',
             //'tgl_input',
             //'tgl_last_update',
             //'kategori_id',
             //'user_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'kartik\grid\ActionColumn'],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

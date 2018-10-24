@@ -8,7 +8,6 @@ use app\models\searchModel\PenjualanSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
 /**
  * PenjualanController implements the CRUD actions for Penjualan model.
  */
@@ -53,6 +52,7 @@ class PenjualanController extends Controller
      */
     public function actionView($id)
     {
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -67,8 +67,6 @@ class PenjualanController extends Controller
     {
         $model = new Penjualan();
         $modelDetailJuals = [];
-        $nilai = Penjualan::find()->max('id');         
-        $model->no_faktur = "MHKT". date('dmY').sprintf("%05s", $nilai+1);
         $model->user_id = \Yii::$app->user->identity->id;
        
         $formDetails = \Yii::$app->request->post('DetailJual', []);
@@ -97,7 +95,7 @@ class PenjualanController extends Controller
                     $modelDetailJual->save();
                     
                 }
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['checkout', 'id' => $model->id]);
             }
         }
         
@@ -111,8 +109,69 @@ class PenjualanController extends Controller
             'modelDetailJuals' => $modelDetailJuals
         ]);
     }
+    
+    public function actionCheckout($id){
+        $model = $this->findModel($id);
+        
+        $totalBelanja = \app\models\DetailJual::find()->where(['penjualan_id' => $model->id])->all();
+        $jumlah_qty = 0;
+        $jumlah_harga = 0;
+        $total = 0;
+        foreach ($totalBelanja as $tot) {
+            $jumlah_qty +=$tot->qty;
+            $jumlah_total = $tot->qty * $tot->barang->harga_jual;
+            $total +=$jumlah_total;
+        }
+        $model->total_jual = $total;
+//        \yii\helpers\VarDumper::dump($jumlah_harga);die;
+//        $model->kembalian = $model->jumlah_uang - $model->total_jual;
+        $nilai = Penjualan::find()->max('id');         
+        $model->no_faktur = "MHKT". date('dmY').sprintf("%05s", $nilai+1);
+        if ($model->load(\Yii::$app->request->post()) && $model->save()){
+            $model->kembalian = $model->jumlah_uang - $model->total_jual;
+            if ($model->load(\Yii::$app->request->post()) && $model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+        
+        return $this->render('checkout_form',[
+            'model' => $model,
+        ]);
+    }
+    
+    public function actionCetakStruk($id){
+        // get your HTML raw content without any layouts or scripts
+    $content = $this->renderPartial('cetak-struk',[
+            'model' => $this->findModel($id),
+        ]);
+        
+        $pdf = new Pdf([
+        'mode' => Pdf::MODE_BLANK,
+        'format' => Pdf::FORMAT_A4, 
+        // portrait orientation
+        'orientation' => Pdf::ORIENT_PORTRAIT, 
+        // stream to browser inline
+        'destination' => Pdf::DEST_BROWSER, 
+        // your html content input
+        'content' => $content,  
+        // format content from your own css file if needed or use the
+        // enhanced bootstrap css built by Krajee for mPDF formatting 
+        'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+        // any css to be embedded if required
+        'cssInline' => '.kv-heading-1{font-size:18px}', 
+         // set mPDF properties on the fly
+        'options' => ['title' => 'Bukti Pembayaran'],
+         // call mPDF methods on the fly
+        'methods' => [ 
+            'SetHeader'=>[''], 
+            'SetFooter'=>[''],
+            ]
+        ]);
+        return $pdf->render();
+    }
 
-    /**
+
+        /**
      * Updates an existing Penjualan model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -200,5 +259,13 @@ class PenjualanController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+    
+    protected function findModelBarang($id){
+        if ($model = \app\models\Barang::findOne($id) != null){
+            return $model;
+        }
+        
+        throw new NotFoundHttpException(\Yii::t('app','The request page does not exist'));
     }
 }

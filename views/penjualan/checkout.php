@@ -39,6 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
     
+    <?php
+    $listPembelian = \app\models\DetailJual::find()->where(['penjualan_id' => $model->id])->all();
+    ?>
+    
     <?= \kartik\grid\GridView::widget([
         'dataProvider' => new yii\data\ActiveDataProvider([
             'query' => $model->getDetailJuals(),
