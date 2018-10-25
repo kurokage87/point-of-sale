@@ -21,7 +21,7 @@ $fieldOptions2 = [
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="#">Kripik Balado <b>Mahkota</b></a>
+        <a href="#" style="color: white">Kripik Balado <b>Mahkota</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
@@ -45,7 +45,7 @@ $fieldOptions2 = [
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
-                <?= Html::submitButton('Sign in', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Sign in', ['class' => 'btn btn-danger btn-block btn-flat', 'name' => 'login-button']) ?>
             </div>
             <!-- /.col -->
         </div>

@@ -40,7 +40,15 @@ use yii\helpers\Html;
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                
+                                <?php
+                                $supplier = app\models\Supplier::find()->where(['user_id' => Yii::$app->user->identity->id])->one();
+                                if ($supplier == null){
+                                    echo yii\bootstrap\Html::a('Profil',['supplier/create'],['class' => 'btn btn-default btn-flat']);
+                                }else{
+                                    echo yii\bootstrap\Html::a('Profil',['supplier/view', 'id' => $supplier->id],['class' => 'btn btn-default btn-flat']);
+                                }
+                                ?>
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(

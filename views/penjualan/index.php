@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\searchModel\PenjualanSearch */
@@ -22,10 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'panel' => ['type' => 'danger', 'heading' => 'list penjualan'],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'kartik\grid\SerialColumn'],
 
-            'id',
+//            'id',
             'no_faktur',
             'tgl_jual',
             'total_jual',
@@ -34,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'user_id',
             //'keterangan:ntext',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'kartik\grid\ActionColumn'],
         ],
     ]); ?>
 </div>

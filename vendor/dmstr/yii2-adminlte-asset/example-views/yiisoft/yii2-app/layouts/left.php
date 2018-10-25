@@ -19,9 +19,10 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
+                    ['label' => 'User Management', 'icon' => 'circle-o', 'url' => ['/site/daftar-user']],
                     ['label' => 'Barang', 'icon' => 'circle-o', 'url' => ['/barang']],
                     ['label' => 'Kategori', 'icon' => 'circle-o', 'url' => ['/kategori']],
-                    ['label' => 'Barang Masuk', 'icon' => 'circle-o', 'url' => ['/barang-masuk']],
+                    ['label' => 'Barang Masuk', 'icon' => 'circle-o', 'url' => ['/beli-supplier']],
                     ['label'=> 'Penjualan', 'icon'=>'circle-o','url' => ['/penjualan']],
                     [
                       'label' => 'Form Request Mutasi',
